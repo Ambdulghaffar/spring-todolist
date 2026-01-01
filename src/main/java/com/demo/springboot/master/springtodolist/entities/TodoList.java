@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -24,4 +25,12 @@ public class TodoList {
     private String date;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public TodoList(String title, String description, String date) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }
