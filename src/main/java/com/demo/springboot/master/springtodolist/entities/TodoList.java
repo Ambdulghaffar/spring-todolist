@@ -1,0 +1,36 @@
+package com.demo.springboot.master.springtodolist.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+public class TodoList {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String title;
+    private String description;
+    private String date;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    // Constructeur pratique utilisé par DataLoader
+    public TodoList(String title, String description, String date) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+}
