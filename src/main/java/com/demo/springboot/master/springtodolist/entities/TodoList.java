@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +24,9 @@ public class TodoList {
     private String title;
     private String description;
     private String date;
+    @CreationTimestamp
     private LocalDateTime createdAt;
+    @CreationTimestamp
     private LocalDateTime updatedAt;
 
     public TodoList(String title, String description, String date) {

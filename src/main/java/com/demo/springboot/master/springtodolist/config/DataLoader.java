@@ -17,11 +17,13 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<TodoList> todoLists =  List.of(
-                new TodoList("Acheter des courses", "Acheter du pain, du lait et des œufs", "2024-06-10"),
-                new TodoList("Aller à la salle de sport", "Séance de musculation à 18h", "2024-06-11"),
-                new TodoList("Préparer la présentation", "Finaliser les diapositives pour la réunion de lundi", "2024-06-12")
-        );
-        todoListRepository.saveAll(todoLists);
+        if(todoListRepository.count()==0){
+            List<TodoList> todoLists =  List.of(
+                    new TodoList("Acheter des courses", "Acheter du pain, du lait et des œufs", "2024-06-10"),
+                    new TodoList("Aller à la salle de sport", "Séance de musculation à 18h", "2024-06-11"),
+                    new TodoList("Préparer la présentation", "Finaliser les diapositives pour la réunion de lundi", "2024-06-12")
+            );
+            todoListRepository.saveAll(todoLists);
+        }
     }
 }
