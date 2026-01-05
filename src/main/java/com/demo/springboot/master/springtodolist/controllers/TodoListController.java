@@ -1,5 +1,7 @@
 package com.demo.springboot.master.springtodolist.controllers;
 
+import com.demo.springboot.master.springtodolist.dto.TodoRequestDTO;
+import com.demo.springboot.master.springtodolist.dto.TodoResponseDTO;
 import com.demo.springboot.master.springtodolist.entities.TodoList;
 import com.demo.springboot.master.springtodolist.services.TodoListService;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +18,13 @@ public class TodoListController {
     }
 
     @PostMapping
-    public TodoList createTodoList(@RequestBody TodoList todoList) {
-        return todoListService.CreateTodoList(todoList);
+    public TodoList createTodoList(@RequestBody TodoRequestDTO todoRequestDTO) {
+        return todoListService.CreateTodoList(todoRequestDTO);
     }
 
     @PutMapping("/{id}")
-    public TodoList updateTodoList(@PathVariable Integer id, @RequestBody TodoList todoList) {
-        return todoListService.UpdateTodoList(id, todoList);
+    public TodoList updateTodoList(@PathVariable Integer id, @RequestBody TodoRequestDTO todoRequestDTO) {
+        return todoListService.UpdateTodoList(id, todoRequestDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -31,12 +33,12 @@ public class TodoListController {
     }
 
     @GetMapping("/{id}")
-    public TodoList getTodoListById(@PathVariable Integer id) {
+    public TodoResponseDTO getTodoListById(@PathVariable Integer id) {
         return todoListService.GetTodoListById(id);
     }
 
     @GetMapping
-    public List<TodoList> getAllTodoLists() {
+    public List<TodoResponseDTO> getAllTodoLists() {
         return todoListService.GetAllTodoLists();
     }
 

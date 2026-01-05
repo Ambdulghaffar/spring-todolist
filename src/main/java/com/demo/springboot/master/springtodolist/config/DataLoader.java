@@ -15,7 +15,7 @@ public class DataLoader implements CommandLineRunner {
         this.todoListRepository = todoListRepository;
     }
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         if(todoListRepository.count()==0){
             List<TodoList> todoLists =  List.of(
