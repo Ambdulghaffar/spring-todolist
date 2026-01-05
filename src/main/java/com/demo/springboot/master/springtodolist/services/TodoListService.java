@@ -27,7 +27,6 @@ public class TodoListService implements TodoListServiceImpl {
         }
         todoListUpdate.setTitle(todoList.getTitle());
         todoListUpdate.setDescription(todoList.getDescription());
-        todoListUpdate.setDate(todoList.getDate());
         return todoListRepository.save(todoListUpdate);
     }
 

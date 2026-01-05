@@ -1,15 +1,15 @@
 package com.demo.springboot.master.springtodolist.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 
 @AllArgsConstructor
@@ -21,19 +21,24 @@ public class TodoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String title;
-    private String description;
-    private String date;
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-    @CreationTimestamp
-    private LocalDateTime updatedAt;
 
-    public TodoList(String title, String description, String date) {
+    @NotBlank(message = "Le titre est obligatoire")
+    @Size(min = 3, max = 100, message = "Le titre doit faire entre 3 et 100 caractères")
+    private String title;
+
+    @Size(max = 500, message = "La description ne doit pas dépasser 500 caractères")
+    private String description;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Instant createdAt;
+    @UpdateTimestamp
+    private Instant updatedAt;
+
+    public TodoList(String title, String description) {
         this.title = title;
         this.description = description;
-        this.date = date;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
     }
 }
