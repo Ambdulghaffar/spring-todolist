@@ -11,5 +11,5 @@ public interface TodoListServiceImpl {
     TodoList UpdateTodoList(Integer id, TodoRequestDTO todoRequestDTO);
     void DeleteTodoList(Integer id);
     TodoResponseDTO GetTodoListById(Integer id);
-    List<TodoResponseDTO> GetAllTodoLists();
+    List<TodoResponseDTO> GetAllTodoLists(String order);
 }

@@ -38,8 +38,8 @@ public class TodoListController {
     }
 
     @GetMapping
-    public List<TodoResponseDTO> getAllTodoLists() {
-        return todoListService.GetAllTodoLists();
+    public List<TodoResponseDTO> getAllTodoLists(@RequestParam(value = "order", required = false, defaultValue = "desc") String order) {
+        return todoListService.GetAllTodoLists(order);
     }
 
 

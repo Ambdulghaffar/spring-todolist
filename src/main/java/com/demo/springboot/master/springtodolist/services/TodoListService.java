@@ -9,6 +9,7 @@ import com.demo.springboot.master.springtodolist.repository.TodoListRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TodoListService implements TodoListServiceImpl {
@@ -44,19 +45,6 @@ public class TodoListService implements TodoListServiceImpl {
         return todoListRepository.save(existing);
     }
 
-    /*
-    @Override
-    public TodoList UpdateTodoList(Integer id, TodoList todoList) {
-        TodoList todoListUpdate = todoListRepository.findById(id).orElse(null);
-        if (todoListUpdate == null) {
-            throw new RuntimeException("TodoList not found with id: " + id);
-        }
-        todoListUpdate.setTitle(todoList.getTitle());
-        todoListUpdate.setDescription(todoList.getDescription());
-        return todoListRepository.save(todoListUpdate);
-    }
-
-     */
     @Override
     public void DeleteTodoList(Integer id) {
         TodoList todoListDelete = todoListRepository.findById(id).orElse(null);
@@ -76,28 +64,17 @@ public class TodoListService implements TodoListServiceImpl {
     }
 
     @Override
-    public List<TodoResponseDTO> GetAllTodoLists() {
-        return todoListRepository.findAll()
-                .stream()
-                .map(todoRespDTOMapper::toDto)
-                .toList();
-    }
-
-
-    /*
-    @Override
-    public TodoList GetTodoListById(Integer id) {
-        TodoList todoList = todoListRepository.findById(id).orElse(null);
-        if (todoList == null) {
-            throw new RuntimeException("TodoList not found" );
+    public List<TodoResponseDTO> GetAllTodoLists(String order) {
+        List<TodoList> lists;
+        if(order!=null && order.equalsIgnoreCase("desc")){
+            lists = todoListRepository.findAllByOrderByIdDesc();
+        } else {
+            lists = todoListRepository.findAll();
         }
-        return todoList;
+
+        return lists.stream()
+                .map(todoRespDTOMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public List<TodoList> GetAllTodoLists() {
-        return todoListRepository.findAll();
-    }
-
-     */
 }
