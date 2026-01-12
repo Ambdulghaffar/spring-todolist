@@ -34,12 +34,12 @@ public class TodoListController {
 
     @GetMapping("/{id}")
     public TodoResponseDTO getTodoListById(@PathVariable Integer id) {
-        return todoListService.GetTodoListById(id);
+        return todoListService.FindTodoListById(id);
     }
 
     @GetMapping
     public List<TodoResponseDTO> getAllTodoLists(@RequestParam(value = "order", required = false, defaultValue = "desc") String order) {
-        return todoListService.GetAllTodoLists(order);
+        return todoListService.FindAllTodoLists(order);
     }
 
 

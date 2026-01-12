@@ -10,6 +10,6 @@ public interface TodoListServiceImpl {
     TodoList CreateTodoList(TodoRequestDTO todoRequestDTO);
     TodoList UpdateTodoList(Integer id, TodoRequestDTO todoRequestDTO);
     void DeleteTodoList(Integer id);
-    TodoResponseDTO GetTodoListById(Integer id);
-    List<TodoResponseDTO> GetAllTodoLists(String order);
+    TodoResponseDTO FindTodoListById(Integer id);
+    List<TodoResponseDTO> FindAllTodoLists(String order);
 }

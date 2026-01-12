@@ -55,7 +55,7 @@ public class TodoListService implements TodoListServiceImpl {
     }
 
     @Override
-    public TodoResponseDTO GetTodoListById(Integer id) {
+    public TodoResponseDTO FindTodoListById(Integer id) {
         TodoList todoList = todoListRepository.findById(id).orElse(null);
         if (todoList == null) {
             throw new RuntimeException("TodoList not found" );
@@ -64,7 +64,7 @@ public class TodoListService implements TodoListServiceImpl {
     }
 
     @Override
-    public List<TodoResponseDTO> GetAllTodoLists(String order) {
+    public List<TodoResponseDTO> FindAllTodoLists(String order) {
         List<TodoList> lists;
         if(order!=null && order.equalsIgnoreCase("desc")){
             lists = todoListRepository.findAllByOrderByIdDesc();
