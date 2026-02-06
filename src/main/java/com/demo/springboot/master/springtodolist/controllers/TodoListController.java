@@ -42,5 +42,10 @@ public class TodoListController {
         return todoListService.FindAllTodoLists(order);
     }
 
+    @GetMapping("/title")
+    public List<TodoResponseDTO> findTodoListByTitle(@RequestParam(value = "title", defaultValue = "") String title) {
+        return todoListService.FindTodoListByTitle(title);
+    }
+
 
 }

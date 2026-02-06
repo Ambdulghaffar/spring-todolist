@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface TodoListRepository extends JpaRepository<TodoList,Integer> {
     List<TodoList> findAllByOrderByIdDesc();
+    List<TodoList> findByTitleContainingIgnoreCase(String title);
 }

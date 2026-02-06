@@ -77,4 +77,11 @@ public class TodoListService implements TodoListServiceImpl {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<TodoResponseDTO> FindTodoListByTitle(String title) {
+        List<TodoList> lists = todoListRepository.findByTitleContainingIgnoreCase(title);
+        return lists.stream()
+                .map(todoRespDTOMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }

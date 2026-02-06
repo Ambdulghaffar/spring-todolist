@@ -12,4 +12,5 @@ public interface TodoListServiceImpl {
     void DeleteTodoList(Integer id);
     TodoResponseDTO FindTodoListById(Integer id);
     List<TodoResponseDTO> FindAllTodoLists(String order);
+    List<TodoResponseDTO> FindTodoListByTitle(String title);
 }
